@@ -1,0 +1,109 @@
+###Get Service document - contains the entity sets of entire service
+http://localhost:4004/odata/v4/CatalogService
+
+### Service metadata document - entities and their respective properties
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get all the employee data in json format
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$format=json
+
+###Get data chunk by chunk
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=3
+
+###Filter data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=loginName eq 'HICKSM'
+
+###pattern based filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+###Get the total records count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Get the records with minimal data set
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=ID,nameFirst,email
+
+###Get the single Employee data by key
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197E7FB
+
+###Insert new employee in DB
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+  "nameFirst": "Walter",
+  "nameMiddle": null,
+  "nameLast": "White",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": null,
+  "email": "walter.white@gmail.com",
+  "loginName": "WINTERW",
+  "Currency_code": "USD",
+  "salaryAmount": 68597,
+  "accountNumber": "7766554433",
+  "bankId": "12155555",
+  "bankName": "My Bank of Amravati"
+}
+
+###change employee data
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/1c8423eb-5190-4099-812f-d73290cc795d
+Content-Type: application/json
+
+{
+      "salaryAmount": 1000000,
+      "Currency_code": "EUR"
+}
+
+###Remove the employee
+DELETE  http://localhost:4004/odata/v4/CatalogService/EmployeeSet/428d98d6-7fcb-45a7-80b8-391d07ad2069
+
+
+###Get all POs
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get single PO
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2A052
+
+###Load dependent items data for PO
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2A052/Items
+
+###Load POS and its dependednt items data together
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2A052?$expand=Items
+
+###Getting data from CDS view entity
+http://localhost:4004/odata/v4/CatalogService/ProductCDS
+
+###Calling boost action
+POST http://localhost:4004/odata/v4/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC2A052')/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###calling getLargestOrder function
+http://localhost:4004/odata/v4/CatalogService/getLargestOrder()
+
+
+###Read custom entity
+http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+
+###Insert data
+POST http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+Content-Type: application/json
+
+{
+  "nameFirst": "Walter",
+  "nameMiddle": null,
+  "nameLast": "White",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": null,
+  "email": "walter.white@gmail.com",
+  "loginName": "WINTERW",
+  "Currency_code": "USD",
+  "salaryAmount": 68597,
+  "accountNumber": "7766554433",
+  "bankId": "12155555",
+  "bankName": "My Bank of Amravati"
+}
