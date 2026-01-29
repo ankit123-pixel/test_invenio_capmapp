@@ -198,13 +198,13 @@ annotate service.POItem with @(
 );
 
 annotate service.POs with {
-    PARTNER_GUID@(
+    PARTNER_GUID @(
         Common.ValueList.entity: 'CatalogService.BusinessPartnerSet'
     )
 };
 
 annotate service.POItem with {
-    PRODUCT_GUID@(
+    PRODUCT_GUID @(
         Common.ValueList.entity: 'CatalogService.ProductSet',
         Common.Text: PRODUCT_GUID.DESCRIPTION
     )
